@@ -3,8 +3,21 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="mb-6">
-      <%= f.label :name, class: label_class %>
-      <%= f.text_field :name, class: input_class %>
+      <div class="flex space-x-2">
+        <%= f.text_field :fname, class: input_class, placeholder: 'First Name' %>
+        <%= f.text_field :lname, class: input_class, placeholder: 'Last Name' %>
+      </div>
+    </div>
+    <div class="mb-6">
+        <div class="flex space-x-2">
+          <%= f.text_field :city, class: input_class, placeholder: 'Zip Code' %>
+        </div>
+    </div>
+    <div class="mb-6">
+        <div class="flex space-x-2">
+          <%= f.text_field :zipcode, class: input_class, placeholder: 'City' %>
+          <%= f.text_field :state, class: input_class, placeholder: 'State' %>
+        </div>
     </div>
 
     <div class="mb-6">
