@@ -1,0 +1,57 @@
+<div class="w-screen p-5">
+  <div class="" data-controller='trainor'>
+      <div class="flex">
+        <div class="flex-grow">
+          <label>Find your price Max</label>
+        </div>
+        <div class="flex-grow">
+          <label>Find your price Min</label>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-grow">
+          <select data-action='change -> trainor#availableTrainorSearchMin' class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+              <option selected>$ Price</option>
+              <% @trainors.map(&:monthly_price).compact.uniq.sort_by{|p| p}.each do |p| %>
+                <option value="<%= p %>"><%= number_to_currency(p, :unit => "$") %></option>
+              <% end %>
+          </select>
+        </div>
+        <div class="flex-grow">
+          <select data-action='change -> trainor#availableTrainorSearchMax' class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+              <option selected>$ Price</option>
+              <% @trainors.map(&:monthly_price).compact.uniq.sort_by{|p| p}.each do |p| %>
+                <option value="<%= p %>"><%= number_to_currency(p, :unit => "$") %></option>
+              <% end %>
+          </select>
+        </div>
+      </div>
+      
+  </div>
+  <div id='trainorList'>
+  <% @trainors.each.with_index do |trainor, i| %>
+      <div id='trainor-<%= trainor.id %>' class="indicator w-full mt-5 trainor-object" data-price='<%= trainor.monthly_price %>'>
+          <span class="indicator-item absolute" style="left: 12rem">
+            <%= render :partial => 'shared/rating', locals: {rating: trainor.rating } %>
+          </span>
+          <span class="indicator-item badge badge-secondary absolute left-0">
+            <%= number_to_currency(trainor.monthly_price, :unit => "$") %>
+          </span>
+          <div class="card lg:card-side bg-base-100 shadow-xl bordered p-5">
+
+          <figure>
+            <%= render :partial => 'shared/image', locals: {:i => i} %>
+           </figure>
+          <div class="card-body">
+            <h2 class="card-title"><%= trainor.name %></h2>
+            <%= simple_format trainor.bio_line %>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary">Message</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>
+</div>
+</div>

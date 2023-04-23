@@ -5,4 +5,9 @@ has_person_name
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def name
+    "#{self.fname} #{self.lname}"
+  end
 end

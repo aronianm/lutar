@@ -22,6 +22,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :zipcode
       # years of experience
       t.integer :experience
+      t.decimal :rating
+
+      t.text :bio_line
 
       t.decimal :monthly_price
       t.decimal :session_price

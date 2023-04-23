@@ -70,6 +70,8 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
+    binding_of_caller (1.0.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -82,6 +84,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    city-state (0.1.0)
+      rubyzip (>= 1.1)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.0)
     crass (1.0.6)
@@ -91,6 +96,7 @@ GEM
     debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    debug_inspector (1.1.0)
     devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -98,6 +104,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
@@ -146,6 +154,9 @@ GEM
     nokogiri (1.14.3-arm64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -215,10 +226,6 @@ GEM
     stripe (8.5.0)
     thor (1.2.1)
     timeout (0.3.2)
-    turbo-rails (1.4.0)
-      actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -244,16 +251,20 @@ PLATFORMS
   arm64-darwin-20
 
 DEPENDENCIES
+  binding_of_caller
   bootsnap
   capybara
+  city-state
   cssbundling-rails
   debug
   devise (~> 4.8, >= 4.8.1)
+  faker
   friendly_id (~> 5.4, >= 5.4.2)
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   name_of_person
+  pry
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   redis (~> 4.0)
@@ -264,7 +275,6 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   stripe
-  turbo-rails
   tzinfo-data
   web-console
   webdrivers
