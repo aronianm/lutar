@@ -17,12 +17,15 @@ Rails.application.routes.draw do
       authenticate :user do
         resources :users, only: [:index] do 
           resources :trainors, only: [:index, :show]
+            member do
+              resources :request_trainors
+            end
         end
       end
     end
     # devise for users and trainors 
     devise_for :users
-    devise_for :trainors
+    devise_for :trainors, path: 's', controllers: { sessions: "trainors/sessions", registrations: "trainors/registrations"}
 
     resources :home, only: [:index] do
       collection do 

@@ -7,7 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # realtions
-
   has_one :trainor_user
   has_one :trainor, through: :trainor_user
+
+  has_many :request_trainors
+  has_many :requested_trainors, through: :request_trainors
 end

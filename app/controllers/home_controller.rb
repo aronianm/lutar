@@ -8,5 +8,6 @@ class HomeController < ApplicationController
   def company
   end
   def trainors
+    @trainors = Trainor.all
   end
 end

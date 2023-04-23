@@ -1,0 +1,28 @@
+<div class="" data-controller='trainor'>
+    <div class="flex">
+      <div class="flex-grow">
+        <label>Find your price Max</label>
+      </div>
+      <div class="flex-grow">
+        <label>Find your price Min</label>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex-grow">
+        <select data-action='change -> trainor#availableTrainorSearchMin' class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            <option selected>$ Price</option>
+            <% @trainors.map(&:monthly_price).compact.uniq.sort_by{|p| p}.each do |p| %>
+              <option value="<%= p %>"><%= number_to_currency(p, :unit => "$") %></option>
+            <% end %>
+        </select>
+      </div>
+      <div class="flex-grow">
+        <select data-action='change -> trainor#availableTrainorSearchMax' class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            <option selected>$ Price</option>
+            <% @trainors.map(&:monthly_price).compact.uniq.sort_by{|p| p}.each do |p| %>
+              <option value="<%= p %>"><%= number_to_currency(p, :unit => "$") %></option>
+            <% end %>
+        </select>
+      </div>
+    </div>
+</div>

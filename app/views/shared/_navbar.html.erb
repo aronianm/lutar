@@ -13,19 +13,20 @@
   <div class="items-center w-full text-center lg:flex-1 lg:flex lg:text-left pt-2 lg:pt-0 hidden" data-nav-target="menu">
     <div class="items-center block w-full mt-2 text-center lg:flex lg:flex-row lg:flex-1 lg:mt-0 lg:text-left lg:justify-end">
       <div class="" id="mobile-menu-2">
-          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 menu menu-horizontal " data-turbolinks="false">
               <li>
                   <%= link_to root_path, data: {
-                    action: 'click -> nav#click'
+                    action: 'click -> nav#click',
+                    turbolinks: false
                   } do %>
                     <span>Home</span>
                   <% end %>
-                  
               </li>
               <% unless current_user.nil? %>
                 <li>
                     <%= link_to user_user_trainors_path(current_user), data: {
-                      action: 'click -> nav#click'
+                      action: 'click -> nav#click',
+                      turbolinks: false
                     } do %>
                       <span>Trainors</span>
                     <% end %>
@@ -33,7 +34,8 @@
               <% else %>
                 <li>
                     <%= link_to trainors_home_index_path, data: {
-                      action: 'click -> nav#click'
+                      action: 'click -> nav#click',
+                      turbolinks: false
                     } do %>
                       <span>Trainors</span>
                     <% end %>
@@ -41,34 +43,68 @@
                <% end unless current_user.try(:trainor_user) %>
               <li>
                   <%= link_to features_home_index_path, data: {
-                      action: 'click -> nav#click'
+                      action: 'click -> nav#click',
+                      turbolinks: false
                     } do %>
                     Features
                   <% end %>
               </li>
               <li>
                   <%= link_to company_home_index_path, data: {
-                      action: 'click -> nav#click'
+                      action: 'click -> nav#click',
+                      turbolinks: false
                     } do %>
                     Company
                   <% end %>
               </li>
               <li>
                   <%= link_to contact_home_index_path, data: {
-                      action: 'click -> nav#click'
+                      action: 'click -> nav#click',
+                      turbolinks: false
                     } do %>
                     Contact
                   <% end %>
               </li>
+              <li class="h-5 w-px bg-gray-200 mx-3"></li>
+              <% if user_signed_in? %>
+                <li>
+                  <button data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    </button>
+                  <%= render :partial => "shared/user_drawer" %>
+                </li>
+              <% else %>
+              <li tabindex="0">
+                  <span>Sign In</span>
+                  <ul class="rounded-box bg-base-100 p-2">
+                    <li><%= link_to "Athlete", new_user_session_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
+                    </li>
+                    <li><%= link_to "Trainor", new_trainor_session_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
+                    </li>
+                  </ul>
+                </li>
+              <li tabindex="0">
+                  <span>Sign Up</span>
+                  <ul class="rounded-box bg-base-100 p-2">
+                    <li><%= link_to "Athlete", new_user_registration_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block lg:ml-2" %></li>
+                    <li><%= link_to "Trainor", new_trainor_registration_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
+                    </li>
+                  </ul>
+                </li>
+              
+              <% end %>
           </ul>
       </div>
-      <span class="h-5 w-px bg-gray-200 mx-3"></span>
+      
       <% if user_signed_in? %>
-        <%= link_to "Edit account", edit_user_registration_path, class: "p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
+
+        
+
+
       <% else %>
-        <%= link_to "Sign in", new_user_session_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
-        <%= link_to "Sign up", new_user_registration_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block lg:ml-2" %>
+
       <% end %>
     </div>
   </div>

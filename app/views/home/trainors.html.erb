@@ -1,0 +1,31 @@
+<div class="w-screen p-5">
+    <%= render :partial => 'shared/trainors/search' %>
+    <div id='trainorList'>
+        <% @trainors.each.with_index do |trainor, i| %>
+            <div id='trainor-<%= trainor.id %>' class="indicator w-full mt-5 trainor-object" data-price='<%= trainor.monthly_price %>'>
+                <span class="indicator-item absolute" style="left: 12rem">
+                    <%= render :partial => 'shared/rating', locals: {rating: trainor.rating } %>
+                </span>
+                <span class="indicator-item badge badge-secondary absolute left-0">
+                    <%= number_to_currency(trainor.monthly_price, :unit => "$") %>
+                </span>
+                <div class="card lg:card-side bg-base-100 shadow-xl bordered p-5 hover:bg-gray-100">
+                    <figure>
+                        <%= render :partial => 'shared/image', locals: {:i => i} %>
+                    </figure>
+                    <div class="card-body">
+                        <div class="flex items-center mb-4 space-x-4">
+                            <div class="space-y-1 font-medium dark:text-white">
+                                <p><%= trainor.name %> <time datetime="<%= trainor.created_at %>" class="block text-sm text-gray-500 dark:text-gray-400">Joined on <%= trainor.created_at.strftime("%B %d") %></time></p>
+                            </div>
+                        </div>
+                        <%= simple_format trainor.bio_line %>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary">Sign Up to Request More Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
