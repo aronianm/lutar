@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
-
-* Configuration
+* ruby 3.1.0p0
 
 * Database creation
+ SQLLITE 
 
-* Database initialization
+Tailwind & daisui 
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+To run application
 
-* Deployment instructions
+npm install 
 
-* ...
+bundle install 
+
+-> /bin/dev
