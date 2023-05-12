@@ -22,89 +22,19 @@
                     <span>Home</span>
                   <% end %>
               </li>
-              <% unless current_user.nil? %>
-                <li>
-                    <%= link_to user_user_trainors_path(current_user), data: {
-                      action: 'click -> nav#click',
-                      turbolinks: false
-                    } do %>
-                      <span>Trainors</span>
-                    <% end %>
-                </li>
+              <% unless current_trainor %>
+                <%= render :partial => 'shared/user_nav' %>
               <% else %>
-                <li>
-                    <%= link_to trainors_home_index_path, data: {
-                      action: 'click -> nav#click',
-                      turbolinks: false
-                    } do %>
-                      <span>Trainors</span>
-                    <% end %>
-                </li>
-               <% end unless current_user.try(:trainor_user) %>
-              <li>
-                  <%= link_to features_home_index_path, data: {
-                      action: 'click -> nav#click',
-                      turbolinks: false
-                    } do %>
-                    Features
-                  <% end %>
-              </li>
-              <li>
-                  <%= link_to company_home_index_path, data: {
-                      action: 'click -> nav#click',
-                      turbolinks: false
-                    } do %>
-                    Company
-                  <% end %>
-              </li>
-              <li>
-                  <%= link_to contact_home_index_path, data: {
-                      action: 'click -> nav#click',
-                      turbolinks: false
-                    } do %>
-                    Contact
-                  <% end %>
-              </li>
-              <li class="h-5 w-px bg-gray-200 mx-3"></li>
-              <% if user_signed_in? %>
-                <li>
-                  <button data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                    </button>
-                  <%= render :partial => "shared/user_drawer" %>
-                </li>
-              <% else %>
-              <li tabindex="0">
-                  <span>Sign In</span>
-                  <ul class="rounded-box bg-base-100 p-2">
-                    <li><%= link_to "Athlete", new_user_session_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
-                    </li>
-                    <li><%= link_to "Trainor", new_trainor_session_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
-                    </li>
-                  </ul>
-                </li>
-              <li tabindex="0">
-                  <span>Sign Up</span>
-                  <ul class="rounded-box bg-base-100 p-2">
-                    <li><%= link_to "Athlete", new_user_registration_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block lg:ml-2" %></li>
-                    <li><%= link_to "Trainor", new_trainor_registration_path, class:"p-3 hover:bg-gray-50 transition ease duration-300 rounded-lg text-center focus:bg-gray-100 lg:inline-block block" %>
-                    </li>
-                  </ul>
-                </li>
-              
+                <%= render :partial => 'shared/trainor_nav' %>
               <% end %>
           </ul>
       </div>
       
       <% if user_signed_in? %>
-
-        
-
-
-      <% else %>
-
+          <%= button_to 'Sign Out',  destroy_user_session_path, method: :delete %>
+      <% end %>
+      <% if trainor_signed_in? %>
+      <%= button_to 'Sign Out',  destroy_trainor_session_path, method: :delete %>
       <% end %>
     </div>
   </div>

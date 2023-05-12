@@ -1,14 +1,25 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :exercises
     authenticate :user, lambda { |u| u.admin? } do
       mount Sidekiq::Web => '/sidekiq'
     end
 
+    resources :workouts, only: [:index] do 
+      get :new_workout, on: :collection
+    end
 
-    # trainor routes 
-    authenticate :trainor do
-      resources :trainors do 
+
+    # trainor routes
+    namespace :trainors do 
+      authenticate :trainor do
+        resources :trainors do 
+          member do 
+            resources :request_trainors, only: [:index]
+            resources :workouts
+          end
+        end
       end
     end
 

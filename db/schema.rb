@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_23_194116) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_010459) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,9 +49,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_194116) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.string "level"
+    t.string "muscle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "request_trainors", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trainor_id"
+    t.boolean "accept"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "trainor_id"], name: "index_request_trainors_on_user_id_and_trainor_id", unique: true
@@ -106,10 +115,36 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_194116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workout_exercises", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "workout_sets", force: :cascade do |t|
+    t.integer "workout_exercise_id"
+    t.decimal "weight"
+    t.string "metric"
+    t.integer "reps"
+    t.time "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "request_trainors", "trainors"
   add_foreign_key "request_trainors", "users"
   add_foreign_key "trainor_users", "trainors"
   add_foreign_key "trainor_users", "users"
+  add_foreign_key "workout_exercises", "exercises"
+  add_foreign_key "workout_exercises", "workouts"
+  add_foreign_key "workout_sets", "workout_exercises"
 end

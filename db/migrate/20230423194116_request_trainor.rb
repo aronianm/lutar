@@ -3,6 +3,7 @@ class RequestTrainor < ActiveRecord::Migration[7.0]
     create_table :request_trainors do |t|
       t.integer :user_id
       t.integer :trainor_id
+      t.boolean :accept, default: nil
       t.timestamps null: false
     end
 

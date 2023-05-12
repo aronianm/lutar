@@ -1,0 +1,29 @@
+<div class="tabs">
+  <%= link_to trainors_workouts_path, class: 'tab tab-lifted tab-active' do %>
+  	<span>Trainor Workouts</span>
+  <% end %>
+  <%= link_to new_trainors_workout_path, class: 'tab tab-lifted' do %>
+  	<span>Create Workouts</span>
+  <% end %>
+</div>
+<div class="overflow-x-auto bg-white" style="background: white;">
+	<table class="table table-compact w-full bg-white">
+		<thead>
+		  	<tr class="bg-white">
+			    <th class="bg-white">Name</th> 
+		  	</tr>
+		</thead> 
+		<tbody>
+
+			<% @workouts.each do |workout| %>
+				<tr class="bg-white">
+					<td class="bg-white">
+						<%= link_to trainors_workout_path(current_trainor, workout), class: 'btn' do %>
+							<%= workout.name %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

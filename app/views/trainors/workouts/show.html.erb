@@ -1,0 +1,34 @@
+<div class="flex justify-center w-full">
+	<div>
+		<h3><%=@workout.name %></h3>
+		<div class="artboard artboard-horizontal phone-5 border rounded-lg w-full">
+			<table class="min-w-full table-compact table">
+				<thead>
+					<tr>
+						<th>Exericse</th>
+						<th colspan="3">Metrics</th>
+					</tr>
+				</thead>
+				<tbody>
+			<% @workout.workout_exercises.each do |workout_exercise| %>
+					<tr>
+						<td style='width: 20rem; vertical-align: initial;' rowspan="<%= workout_exercise.workout_sets.size %>">
+							<%= workout_exercise.exercise.name %>
+						</td>
+					<% workout_exercise.workout_sets.each.with_index(1) do |set, i| %>
+						<% if i != 1 %>
+							<tr>
+						<% end %>
+							<td><%= i %></td>
+							<td style=' width: 5rem;'> <%= set.reps %></td>
+							<td><%= set.weight %> <%= set.metric %></td>
+							
+						</tr>
+					<% end %>
+				
+			<% end %>
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>

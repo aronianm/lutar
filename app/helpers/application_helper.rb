@@ -35,6 +35,17 @@ module ApplicationHelper
     style_button(variant, theme_button(theme))
   end
 
+  def  date_with_year date
+    return nil if date.nil?
+    date.strftime("%Y-%m-%d")
+  end
+
+  def time_since date, type: :years
+    return nil if date.nil?
+    today = DateTime.now
+    (today.to_date - date.to_date).to_i + 1 
+  end
+
   def theme_button(theme)
     themes = {
       primary: "primary",

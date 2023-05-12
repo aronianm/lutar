@@ -1,0 +1,52 @@
+<div class="tabs">
+  <%= link_to trainors_workouts_path, class: 'tab tab-lifted' do %>
+  	<span>Trainor Workouts</span>
+  <% end %>
+  <%= link_to new_trainors_workout_path, class: 'tab tab-lifted tab-active' do %>
+  	<span>Create Workouts</span>
+  <% end %>
+</div>
+<div  data-controller='workout' data-workout-exercise-outlet=".workout-exercise">
+	<div class="form-control bg-white p-5 ml-5 mr-5">
+		  <label class="input-group input-group-vertical bg-white">
+		    <input type="text" placeholder="Name of Workout" class="input input-bordered bg-white" data-action="input -> workout#updateName" />
+		  </label>
+	</div>
+	<div class="fixed right-6 bottom-6 group">
+	    <button type="button" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-lg w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800" data-action='click-> workout#addWorkout'>
+	        <svg aria-hidden="true" class="w-8 h-8 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+	        <span class="sr-only">Add Exercise</span>
+	    </button>
+	</div>
+	<div class="fixed bottom-6  group" style="right: 8rem">
+	    <button type="button" aria-expanded="false" class="flex items-center justify-center text-white bg-green-700 rounded-lg w-14 h-14 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700 focus:ring-4 focus:ring-green-300 focus:outline-none dark:focus:ring-green-800" data-action='click-> workout#save' data-url="<%= trainors_workouts_path(current_trainor) %>">
+	        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+			  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+			</svg>
+	        <span class="sr-only">Save</span>
+	    </button>
+	</div>
+</div>
+<div id='workoutTemplate' class="flex flex-wrap justify-center">
+	<% 30.times do |i| %>
+	<div data-controller='exercise' class="flex items-center workout-exercise border rounded-lg p-5 w-full mt-2  hidden overflow-scroll">
+		<div class="relative inline-flex">
+
+				<select class="w-72  z-10 mt-2  shadow-md rounded-lg p-2 overflow-scroll h-full" data-controller='searchable' data-action='click-> exercise#update' data-attributes='exercise_id'>
+				<% Exercise.all.sort_by(&:name).each do |m| %>
+						<option value="<%= m.id %>"><%= m.name %></option>
+				<% end %>
+			</select>
+			
+		</div>
+		<div class="workoutSets flex">
+		</div>
+		<div class="flex justify-center items-center">
+				<button type="button" data-action="click -> exercise#addSet" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-lg w-5 h-5 hover:bg-blue-800 	dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800 ml-5">
+			        <svg aria-hidden="true" class="w-8 h-8 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+			        <span class="sr-only">Add Set</span>
+		    	</button>
+			</div>
+	</div>
+	<% end %>
+</div>

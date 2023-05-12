@@ -12,4 +12,10 @@ class User < ApplicationRecord
 
   has_many :request_trainors
   has_many :requested_trainors, through: :request_trainors
+
+
+
+  def name 
+    "#{self.fname} #{self.lname}"
+  end
 end

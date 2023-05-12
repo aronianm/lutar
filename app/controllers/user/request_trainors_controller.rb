@@ -7,6 +7,10 @@ class User::RequestTrainorsController < ApplicationController
 		redirect_to request.referrer
 	end
 
+	def index
+		@requests = RequestTrainor.where(:user_id => current_user.id)
+	end
+
 
 
 	private

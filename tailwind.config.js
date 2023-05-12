@@ -3,10 +3,16 @@ module.exports = {
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.{js, jsx, vue}',
-     "./node_modules/flowbite/**/*.js"
+  
+    'node_modules/preline/dist/*.js',
+    "./src/**/*.{html,js}",
   ],
   theme: {
     extend: {},
+  },
+  darkMode: 'class',
+  daisyui: {
+    themes: ['light'],
   },
   plugins: [
     require('@tailwindcss/forms'),
@@ -14,6 +20,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
     require("daisyui"),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('preline/plugin'),
   ]
 }

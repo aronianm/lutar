@@ -1,0 +1,19 @@
+<table class='table w-screen'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>User</th>
+            <th>Accept</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @requests.each do |r| %>
+        <tr>
+            <td><%= date_with_year r.created_at %>
+            <td><%= r.user.name %></td>
+            <td><button class='btn'>Accept</button>
+                <button class='btn'>Deny</button></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>

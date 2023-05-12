@@ -22,9 +22,8 @@
                         <%= simple_format trainor.bio_line %>
                         <div class="card-actions justify-end">
                             <% if current_user %>
-                                <%= link_to user_request_trainors_path(current_user, request_trainor: {trainor_id: trainor.id}), class: 'btn btn-primary', data: { turbo_method: :post, turbo_confirm: "Are you sure?" } do %>
-                                    Request More Info
-                                <% end %>
+                                <%= button_to "Request More", user_request_trainors_path(current_user, request_trainor: {trainor_id: trainor.id}), method: :post %>
+                                
                             <% else %>
                                 <button class="btn btn-primary">Sign Up to Request More Info</button>
                             <% end %>

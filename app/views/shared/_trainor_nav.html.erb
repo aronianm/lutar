@@ -1,0 +1,16 @@
+<li>
+    <%= link_to trainors_request_trainors_path(current_trainor), data: {
+      action: 'click -> nav#click',
+      turbolinks: false
+    } do %>
+      <span>Requests</span>
+    <% end %>
+</li>
+<li>
+  <%= link_to trainors_workouts_path(current_trainor), data: {
+      action: 'click -> nav#click',
+      turbolinks: false
+    } do %>
+      <span>Workouts</span>
+    <% end %>
+</li>

@@ -1,0 +1,19 @@
+<table class='table w-screen'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @requests.each.with_index do |r, i| %>
+        <tr>
+            <td><%= time_since(r.created_at, type: :days) %> <small>days ago</small></td>
+            <td class='flex items-center'><%= render :partial => 'shared/image', locals: {:i => i} %>
+                <span class='float-right'><%= r.trainor.name %></span></td>
+            <td><button class='btn'>Deny</button></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
